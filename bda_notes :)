@@ -56,3 +56,31 @@ hadoop@speedfreak-PC:~$
 
 //to turn the base on permanent
 hadoop@speedfreak-PC:~$ conda config --set auto_activate_base False^C
+
+
+
+
+
+Nethd.conf
+NetcatAgent.sources = Netcat
+NetcatAgent.channels = MemChannel
+NetcatAgent.sinks = hdfsâlsink
+
+NetcatAgent.sources.Netcat.type = netcat
+NetcatAgent.sources.Netcat.bind = localhost
+NetcatAgent.sources.Netcat.port = 56563
+NetcatAgent.sources.Netcat.channels = MemChannel
+
+NetcatAgent.channels.MemChannel.type = memory
+NetcatAgent.channels.MemChannel.capacity = 1000
+
+# Define a source on agent and connect to channel memoryChannel. 
+
+NetcatAgent.sinks.hdfsâsink.type = hdfs 
+NetcatAgent.sinks.hdfsâsink.channel = MemChannel 
+NetcatAgent.sinks.hdfsâsink.hdfs.path = hdfs://localhost:8020/flume/
+NetcatAgent.sinks.hdfsâsink.hdfs.fileType = DataStream
+NetcatAgent.sinks.hdfsâsink.hdfs.writeFormat = Text
+NetcatAgent.sinks.hdfsâsink.hdfs.filePrefix=
+NetcatAgent.sinks.hdfsâsink.hdfs.fileSuffix=.txt
+
